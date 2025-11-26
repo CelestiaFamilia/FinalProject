@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: #1e1e30;
+            --secondary-bg: #2a2a40;
+            --accent-blue: #007BFF;
+            --accent-blue-hover: #0069D9;
+            --text-color: #ffffff;
+            --toggle-off: #888888;
+            --toggle-on: #007BFF;
+            --modal-bg: linear-gradient(135deg, #00c6ff, #0072ff);
+            --warning-bg: linear-gradient(135deg, #ff5f6d, #ffc371);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar - MATCHES EXACTLY */
+        .sidebar {
+            width: 240px;
+            background: #1A1A2E;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: var(--accent-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent-blue-hover);
+        }
+
+        .nav-btn i {
+            font-size: 20px;
+        }
+
+        .nav-btn span {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .page-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            background-color: var(--secondary-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #cccccc;
+        }
+
+        .section-header {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .notification-preferences {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .notification-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .notification-label {
+            font-size: 0.95rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--toggle-off);
+            transition: .4s;
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--toggle-on);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        .account-action {
+            padding: 15px 20px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .account-action:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .account-action h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .account-action p {
+            font-size: 0.85rem;
+            color: #aaaaaa;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal {
+            width: 400px;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.change-password {
+            background: var(--modal-bg);
+        }
+
+        .modal.delete-account {
+            background: var(--warning-bg);
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .modal-btn.cancel {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+        }
+
+        .modal-btn.save {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .modal-btn.confirm {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar - EXACT MATCH -->
+    <aside class="sidebar">
+        <div class="nav-btn">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+        <div class="nav-btn">
+            <i class="fas fa-plus-circle"></i>
+            <span>Add Bill</span>
+        </div>
+        <div class="nav-btn">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Bills</span>
+        </div>
+        <div class="nav-btn">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Calendar</span>
+        </div>
+        <div class="nav-btn">
+            <i class="fas fa-user-circle"></i>
+            <span>Profile</span>
+        </div>
+        <div class="nav-btn">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1 class="page-title">Settings</h1>
+
+        <!-- Notification Preferences -->
+        <div class="section">
+            <h2 class="section-header">Notification Preferences</h2>
+            <div class="notification-preferences">
+                <div class="notification-row">
+                    <span class="notification-label">Email Notifications</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="email-notif">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="notification-row">
+                    <span class="notification-label">SMS Alerts</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="sms-alert" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="notification-row">
+                    <span class="notification-label">Push Notifications</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="push-notif">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Management -->
+        <div class="section">
+            <h3 class="section-title">Account Management</h3>
+            <div class="account-action" id="connected-account">
+                <h3>Connected Account</h3>
+                <p>Update your account password regularly to keep your account secure.</p>
+            </div>
+            <div class="account-action" id="change-password">
+                <h3>Change Password</h3>
+                <p>Update your account password regularly to keep your account secure.</p>
+            </div>
+            <div class="account-action" id="delete-account">
+                <h3>Delete Account</h3>
+                <p>Permanently delete your account and all associated data. This action cannot be undone.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals stay unchanged -->
+    <div class="modal-overlay" id="changePasswordModal">
+        <div class="modal change-password">
+            <h2>Change Password</h2>
+            <input type="password" class="modal-input" placeholder="Current Password" required>
+            <input type="password" class="modal-input" placeholder="New Password" required>
+            <input type="password" class="modal-input" placeholder="Confirm Password" required>
+            <div class="modal-buttons">
+                <button class="modal-btn cancel" onclick="closeModal('changePasswordModal')">Cancel</button>
+                <button class="modal-btn save">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="deleteAccountModal">
+        <div class="modal delete-account">
+            <h2>Warning: This action is permanent.</h2>
+            <p style="margin: 20px 0; font-size: 1.1rem; line-height: 1.5;">
+                Deleting your account will remove all your data, including bills, reminders, and settings.
+                This cannot be undone.
+            </p>
+            <div class="modal-buttons">
+                <button class="modal-btn confirm" onclick="confirmDelete()">Confirm</button>
+                <button class="modal-btn cancel" onclick="closeModal('deleteAccountModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function confirmDelete() {
+            alert("Account deleted successfully.");
+            closeModal('deleteAccountModal');
+        }
+
+        document.getElementById('change-password').addEventListener('click', function() {
+            openModal('changePasswordModal');
+        });
+
+        document.getElementById('delete-account').addEventListener('click', function() {
+            openModal('deleteAccountModal');
+        });
+
+        window.addEventListener('click', function(event) {
+            const modals = document.querySelectorAll('.modal-overlay');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
