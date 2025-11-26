@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #0C1032;
+            overflow: hidden;
+        }
+        .container {
+            width: 1728px;
+            height: 1117px;
+            position: relative;
+            background: #0C1032;
+        }
+        .background-shapes {
+            width: 1188px;
+            height: 1146px;
+            left: 665px;
+            top: -29px;
+            position: absolute;
+        }
+        .shape1 {
+            width: 621.63px;
+            height: 595.56px;
+            left: 0px;
+            top: 0px;
+            position: absolute;
+            background: linear-gradient(216deg, #A201FF 0%, #CAF94E 100%);
+            box-shadow: 150px 150px 150px;
+            border-radius: 9999px;
+            filter: blur(75px);
+        }
+        .shape2 {
+            width: 474.28px;
+            height: 468.10px;
+            left: 713.72px;
+            top: 150.02px;
+            position: absolute;
+            background: linear-gradient(158deg, #C31AD9 0%, #0900FF 100%);
+            box-shadow: 150px 150px 150px;
+            border-radius: 9999px;
+            filter: blur(75px);
+        }
+        .shape3 {
+            width: 661.92px;
+            height: 624.89px;
+            left: 363.77px;
+            top: 521.11px;
+            position: absolute;
+            background: linear-gradient(314deg, #FF5100 0%, #FFF95A 100%);
+            box-shadow: 150px 150px 150px;
+            border-radius: 9999px;
+            border: 1px black solid;
+            filter: blur(75px);
+        }
+        .form-container {
+            width: 852px;
+            height: 866px;
+            left: 791px;
+            top: 155px;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 4px 4px 4px;
+            border-radius: 31px;
+            border: 3px white solid;
+            filter: blur(2px);
+        }
+        .title {
+            width: 384px;
+            height: 59px;
+            left: 1195px;
+            top: 178px;
+            position: absolute;
+            color: white;
+            font-size: 40px;
+            font-family: Poppins;
+            font-weight: 700;
+            word-wrap: break-word;
+        }
+        .divider {
+            width: 681px;
+            height: 0px;
+            left: 885px;
+            top: 396px;
+            position: absolute;
+            outline: 2px white solid;
+            outline-offset: -1px;
+        }
+        .social-google {
+            width: 330px;
+            height: 68px;
+            left: 887px;
+            top: 287px;
+            position: absolute;
+        }
+        .social-facebook {
+            width: 330px;
+            height: 68px;
+            left: 1237px;
+            top: 288px;
+            position: absolute;
+        }
+        .social-btn {
+            width: 330px;
+            height: 68px;
+            left: 0px;
+            top: 0px;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0px 4px 55px 1px rgba(0, 0, 0, 0.55);
+            border-radius: 35px;
+            border: 1px white solid;
+        }
+        .social-btn-text {
+            width: 206px;
+            height: 28px;
+            left: 79px;
+            top: 20px;
+            position: absolute;
+            color: white;
+            font-size: 20px;
+            font-family: Poppins;
+            font-weight: 500;
+            word-wrap: break-word;
+        }
+        .social-facebook-text {
+            width: 228px;
+            height: 28px;
+            left: 67px;
+            top: 20px;
+            position: absolute;
+            color: white;
+            font-size: 20px;
+            font-family: Poppins;
+            font-weight: 500;
+            word-wrap: break-word;
+        }
+        .terms {
+            width: 410px;
+            left: 957px;
+            top: 824px;
+            position: absolute;
+            color: white;
+            font-size: 20px;
+            font-family: Poppins;
+            font-weight: 500;
+            word-wrap: break-word;
+        }
+        .signup-btn {
+            width: 329px;
+            height: 72px;
+            left: 1237px;
+            top: 892px;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.25);
+            overflow: hidden;
+            border-radius: 100px;
+            outline: 1px rgba(0, 0, 0, 0.05) solid;
+            outline-offset: -1px;
+            backdrop-filter: blur(17.50px);
+        }
+        .signup-btn-text {
+            left: 89px;
+            top: 6px;
+            position: absolute;
+            text-align: center;
+            color: white;
+            font-size: 40px;
+            font-family: Poppins;
+            font-weight: 400;
+            word-wrap: break-word;
+        }
+        .input-field {
+            width: 680px;
+            height: 60px;
+            left: 886px;
+            top: 527px;
+            position: absolute;
+            outline: 1px rgba(0, 0, 0, 0) solid;
+            outline-offset: -1px;
+        }
+        .input-field-password {
+            width: 680px;
+            height: 60px;
+            left: 885px;
+            top: 711px;
+            position: absolute;
+            outline: 1px rgba(0, 0, 0, 0) solid;
+            outline-offset: -1px;
+        }
+        .input-field-name {
+            width: 680px;
+            height: 60px;
+            left: 885px;
+            top: 430px;
+            position: absolute;
+            outline: 1px rgba(0, 0, 0, 0) solid;
+            outline-offset: -1px;
+        }
+        .input-field-password-confirm {
+            width: 680px;
+            height: 60px;
+            left: 886px;
+            top: 620px;
+            position: absolute;
+            outline: 1px rgba(0, 0, 0, 0) solid;
+            outline-offset: -1px;
+        }
+        .input-box {
+            width: 680px;
+            height: 60px;
+            left: 0px;
+            top: 0px;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0px 4px 55px 2px rgba(0, 0, 0, 0.30);
+            border-radius: 30px;
+            border: 1px white solid;
+        }
+        .input-label {
+            left: 27px;
+            top: 12px;
+            position: absolute;
+            color: white;
+            font-size: 24px;
+            font-family: Poppins;
+            font-weight: 300;
+            word-wrap: break-word;
+        }
+        .show-password {
+            width: 40px;
+            height: 37px;
+            left: 1509px;
+            top: 721px;
+            position: absolute;
+            overflow: hidden;
+        }
+        .show-password-toggle {
+            width: 40px;
+            height: 27.23px;
+            left: 0px;
+            top: 4px;
+            position: absolute;
+            background: white;
+        }
+        .show-password-dot {
+            width: 17.60px;
+            height: 17.02px;
+            left: 11.20px;
+            top: 8.88px;
+            position: absolute;
+            background: white;
+        }
+        .show-password-confirm {
+            width: 40px;
+            height: 37px;
+            left: 1509px;
+            top: 635px;
+            position: absolute;
+            overflow: hidden;
+        }
+        .terms-checkbox {
+            width: 45px;
+            height: 45px;
+            left: 891px;
+            top: 816px;
+            position: absolute;
+            overflow: hidden;
+        }
+        .terms-checkbox-inner {
+            width: 39.38px;
+            height: 39.38px;
+            left: 2.81px;
+            top: 2.81px;
+            position: absolute;
+            background: white;
+        }
+        .signin-btn {
+            width: 329px;
+            height: 72px;
+            left: 810px;
+            top: 160px;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.20);
+            overflow: hidden;
+            border-radius: 100px;
+            outline: 1px rgba(0, 0, 0, 0.05) solid;
+            outline-offset: -1px;
+            backdrop-filter: blur(17.50px);
+        }
+        .signin-btn-text {
+            left: 98px;
+            top: 6px;
+            position: absolute;
+            text-align: center;
+            color: white;
+            font-size: 40px;
+            font-family: Poppins;
+            font-weight: 400;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="background-shapes">
+            <div class="shape1"></div>
+            <div class="shape2"></div>
+            <div class="shape3"></div>
+        </div>
+        
+        <div class="form-container"></div>
+        <div class="title">Create an account</div>
+        <div class="divider"></div>
+        
+        <div class="social-google">
+            <img style="width: 50px; height: 50px; left: 12px; top: 9px; position: absolute" src="https://placehold.co/50x50 " />
+            <div class="social-btn"></div>
+            <div class="social-btn-text">Sign up with Google</div>
+        </div>
+        
+        <div class="social-facebook">
+            <div class="social-btn"></div>
+            <div class="social-facebook-text">Sign up with Facebook</div>
+            <img style="width: 45px; height: 45px; left: 12px; top: 11px; position: absolute" src="https://placehold.co/45x45 " />
+        </div>
+        
+        <div class="input-field-name">
+            <div class="input-box"></div>
+            <div class="input-label">Name</div>
+        </div>
+        
+        <div class="input-field">
+            <div class="input-box"></div>
+            <div class="input-label">Email or Phone</div>
+        </div>
+        
+        <div class="input-field-password-confirm">
+            <div class="input-box"></div>
+            <div class="input-label">Password</div>
+        </div>
+        
+        <div class="input-field-password">
+            <div class="input-box"></div>
+            <div class="input-label">Password</div>
+        </div>
+        
+        <div class="show-password">
+            <div class="show-password-toggle"></div>
+            <div class="show-password-dot"></div>
+        </div>
+        
+        <div class="show-password-confirm">
+            <div class="show-password-toggle"></div>
+            <div class="show-password-dot"></div>
+        </div>
+        
+        <div class="terms-checkbox">
+            <div class="terms-checkbox-inner"></div>
+        </div>
+        
+        <div class="terms">I agree to all terms and Privacy Policy</div>
+        
+        <div class="signup-btn">
+            <div class="signup-btn-text">Sign up</div>
+        </div>
+        
+        <div class="signin-btn">
+            <div class="signin-btn-text">Sign in</div>
+        </div>
+    </div>
+</body>
+</html>
