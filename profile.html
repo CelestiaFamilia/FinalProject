@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #1E1E30;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            display: flex;
+        }
+
+        /* Sidebar - MATCHES HOME / BILLS / CALENDAR */
+        .sidebar {
+            width: 240px;
+            background: #1A1A2E;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: #007BFF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background: #0069D9;
+        }
+
+        .nav-btn i {
+            font-size: 20px;
+        }
+
+        .nav-btn span {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* ACTIVE STATE - Profile is active */
+        .nav-btn.active {
+            background: #007BFF;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header {
+            background: #1A1A2E;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .profile-card {
+            background: #2C2C4A;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00ff9d, #007aff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .username {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .email {
+            font-size: 14px;
+            color: #AAAAAA;
+        }
+
+        .section-title {
+            font-size: 14px;
+            color: #AAAAAA;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            background: #2C2C4A;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .label {
+            width: 100px;
+            font-size: 14px;
+            color: #CCCCCC;
+        }
+
+        .value {
+            flex: 1;
+            background: #3A3A5A;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 14px;
+            border: 1px solid #444;
+        }
+
+        .logout-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #2C2C4A;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            border: none;
+            color: white;
+            font-size: 14px;
+        }
+
+        .logout-btn:hover {
+            background: #3A3A5A;
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="nav-btn">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+        <div class="nav-btn">
+            <i class="fas fa-plus-circle"></i>
+            <span>Add Bill</span>
+        </div>
+        <div class="nav-btn">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Bills</span>
+        </div>
+        <div class="nav-btn">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Calendar</span>
+        </div>
+        <div class="nav-btn active">
+            <i class="fas fa-user-circle"></i>
+            <span>Profile</span>
+        </div>
+        <div class="nav-btn">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Profile</h1>
+        </div>
+
+        <div class="profile-card">
+            <div class="avatar">K</div>
+            <div class="user-info">
+                <div class="username">kitsune</div>
+                <div class="email">Int.kitsune@gmail.com</div>
+            </div>
+        </div>
+
+        <div class="section-title">Personal Information</div>
+
+        <div class="info-grid">
+            <div class="info-row">
+                <div class="label">Full Name</div>
+                <div class="value">Group4</div>
+            </div>
+            <div class="info-row">
+                <div class="label">Address</div>
+                <div class="value">Cyberion District</div>
+            </div>
+            <div class="info-row">
+                <div class="label">Phone</div>
+                <div class="value">9987654321</div>
+            </div>
+            <div class="info-row">
+                <div class="label">Birthday</div>
+                <div class="value">May 8, 2005</div>
+            </div>
+            <div class="info-row">
+                <div class="label">Email</div>
+                <div class="value">Int.Kitsune@gmail.com</div>
+            </div>
+            <div class="info-row">
+                <div class="label">Gender</div>
+                <div class="value">Male</div>
+            </div>
+        </div>
+
+        <button class="logout-btn">Logout</button>
+    </div>
+</body>
+</html>
