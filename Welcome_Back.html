@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Welcome Back - OnTime</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0C1032;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            height: 800px; /* ✅ Increased from 700px to match image */
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* Astronaut Image */
+        .astronaut {
+            width: 300px;
+            height: 400px;
+            z-index: 5;
+        }
+
+        .astronaut img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Main Card */
+        .card {
+            flex: 1;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px; /* ✅ Slightly increased padding for taller feel */
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+            min-height: 500px; /* ✅ Ensures card stretches vertically */
+        }
+
+        /* Glowing Gradient Behind Text (Heart-Shaped) */
+        .glow-bg {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            top: 80px; /* ✅ Adjusted to keep glow behind text */
+            right: 60px;
+            background: linear-gradient(45deg, #FF8103, #FFF95A, #A201FF);
+            filter: blur(70px);
+            opacity: 0.7;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .welcome-text {
+            color: white;
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .message-text {
+            color: white;
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* Next Button */
+        .next-btn {
+            position: absolute;
+            bottom: 30px; /* ✅ Slightly lower to fit taller card */
+            right: 30px;
+            width: 100px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            border: 1px rgba(255, 255, 255, 0) solid;
+            backdrop-filter: blur(2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .next-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Astronaut -->
+        <div class="astronaut">
+            <!--<img src="https://i.imgur.com/6jJxgKo.png" alt="Astronaut on Moon" />-->
+        </div>
+
+        <!-- Card -->
+        <div class="card">
+            <div class="glow-bg"></div>
+            <div class="welcome-text">Hey there! Welcome back 🚀</div>
+            <div class="message-text">Your dashboard’s ready—check your upcoming bills and stay ahead today!</div>
+            <div class="next-btn">next</div>
+        </div>
+    </div>
+</body>
+</html>
