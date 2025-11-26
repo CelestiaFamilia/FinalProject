@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Your Bills - OnTime</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1E1E30;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background: #1A1A2E;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: #007BFF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background: #0069D9;
+        }
+
+        .nav-btn i {
+            font-size: 20px;
+        }
+
+        .nav-btn span {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #1A1A2E;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #2C2C4A;
+            border-radius: 8px;
+            padding: 8px 15px;
+            flex: 1;
+        }
+
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            background: #2C2C4A;
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .greeting {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: #00FF88;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Bill List Section */
+        .bills-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .bills-subtitle {
+            font-size: 14px;
+            color: #AAAAAA;
+            margin-bottom: 20px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-tab {
+            padding: 8px 16px;
+            background: #2C2C4A;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .filter-tab.active {
+            background: linear-gradient(90deg, #007BFF, #00FF88);
+            color: white;
+        }
+
+        .add-bill-btn {
+            padding: 8px 16px;
+            background: #2C2C4A;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .add-bill-btn:hover {
+            background: #3A3A5A;
+        }
+
+        /* Bill List */
+        .bill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .bill-item {
+            background: #2C2C4A;
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .bill-item:hover {
+            background: #3A3A5A;
+        }
+
+        .bill-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bill-icon {
+            width: 32px;
+            height: 32px;
+            background: #1E1E30;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .bill-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .bill-name {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .bill-meta {
+            font-size: 12px;
+            color: #AAAAAA;
+        }
+
+        .bill-amount {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .bill-status {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-overdue {
+            color: #FF4D4D;
+        }
+
+        .status-upcoming {
+            color: #007BFF;
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="nav-btn">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+        <div class="nav-btn">
+            <i class="fas fa-plus-circle"></i>
+            <span>Add Bill</span>
+        </div>
+        <div class="nav-btn active">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Bills</span>
+        </div>
+        <div class="nav-btn">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Calendar</span>
+        </div>
+        <div class="nav-btn">
+            <i class="fas fa-user-circle"></i>
+            <span>Profile</span>
+        </div>
+        <div class="nav-btn">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search bills or tags">
+                <button class="search-btn">Search</button>
+            </div>
+            <div class="greeting">
+                <span>Hello, Nin</span>
+                <div class="user-avatar">N</div>
+            </div>
+        </div>
+
+        <!-- Bill List Section -->
+        <div class="bills-title">Your Bills</div>
+        <div class="bills-subtitle">Manage, track and organize all your upcoming and past bills</div>
+
+        <div class="filter-tabs">
+            <div class="filter-tab active" onclick="filterBills('all')">All</div>
+            <div class="filter-tab" onclick="filterBills('utilities')">Utilities</div>
+            <div class="filter-tab" onclick="filterBills('subscription')">Subscription</div>
+            <div class="add-bill-btn" onclick="window.location.href='add_bill.html'">Add Bill</div>
+        </div>
+
+        <!-- Bill List -->
+        <div class="bill-list">
+            <!-- Water Bill -->
+            <div class="bill-item" data-category="utilities">
+                <div class="bill-info">
+                    <div class="bill-icon">W</div>
+                    <div class="bill-text">
+                        <div class="bill-name">Water</div>
+                        <div class="bill-meta">Utilities Due 2025/11/7</div>
+                    </div>
+                </div>
+                <div class="bill-amount">₱390.00</div>
+                <div class="bill-status status-overdue">Overdue</div>
+            </div>
+
+            <!-- Electricity Bill -->
+            <div class="bill-item" data-category="utilities">
+                <div class="bill-info">
+                    <div class="bill-icon">E</div>
+                    <div class="bill-text">
+                        <div class="bill-name">Electricity</div>
+                        <div class="bill-meta">Utilities Due 2025/11/20</div>
+                    </div>
+                </div>
+                <div class="bill-amount">₱1500.00</div>
+                <div class="bill-status status-upcoming">Upcoming</div>
+            </div>
+
+            <!-- Internet Bill -->
+            <div class="bill-item" data-category="utilities">
+                <div class="bill-info">
+                    <div class="bill-icon">I</div>
+                    <div class="bill-text">
+                        <div class="bill-name">Internet</div>
+                        <div class="bill-meta">Utilities Due 2025/11/24</div>
+                    </div>
+                </div>
+                <div class="bill-amount">₱999.00</div>
+                <div class="bill-status status-upcoming">Upcoming</div>
+            </div>
+
+            <!-- Spotify Bill -->
+            <div class="bill-item" data-category="subscription">
+                <div class="bill-info">
+                    <div class="bill-icon">S</div>
+                    <div class="bill-text">
+                        <div class="bill-name">Spotify</div>
+                        <div class="bill-meta">Subscription Due 2025/11/24</div>
+                    </div>
+                </div>
+                <div class="bill-amount">₱129.00</div>
+                <div class="bill-status status-upcoming">Upcoming</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterBills(category) {
+            // Remove active class from all tabs
+            document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+
+            // Show/hide bills based on category
+            document.querySelectorAll('.bill-item').forEach(item => {
+                if (category === 'all') {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = item.getAttribute('data-category') === category ? 'flex' : 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
