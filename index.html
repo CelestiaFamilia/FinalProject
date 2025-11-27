@@ -34,15 +34,35 @@
         .ellipse2 { right: 0%; width: 55%; top: 700px; background: #0088FF; }
         .ellipse3 { left: 27%; width: 45%; top: 0px; background: #4000FF; }
 
-        @keyframes bgCycle1 { /* same as before */ }
-        @keyframes bgCycle2 { /* same as before */ }
-        @keyframes bgCycle3 { /* same as before */ }
+        @keyframes bgCycle1 {
+            0%   { left: 0%; right: 44.42%; top: 719px; }
+            25%  { left: 0%; right: 44.42%; top: 160px; }
+            50%  { left: 42.1%; right: 2.32%; top: -58px; }
+            75%  { left: 39.14%; right: 5.28%; top: 960px; }
+            100% { left: 0%; right: 44.42%; top: 719px; }
+        }
+
+        @keyframes bgCycle2 {
+            0%   { left: 44.42%; right: 0%; top: 719px; }
+            25%  { left: 8.71%; right: 35.71%; top: 960px; }
+            50%  { left: -5.6%; right: 50.02%; top: 276px; }
+            75%  { left: 44.42%; right: 0%; top: -58px; }
+            100% { left: 44.42%; right: 0%; top: 719px; }
+        }
+
+        @keyframes bgCycle3 {
+            0%   { left: 27.79%; right: 16.63%; top: 0px; }
+            25%  { left: 47.8%; right: -3.38%; top: 360px; }
+            50%  { left: 27%; right: 17.42%; top: 1020px; }
+            75%  { left: -5.6%; right: 50.02%; top: 310px; }
+            100% { left: 27.79%; right: 16.63%; top: 0px; }
+        }
 
         .ellipse1 { animation: bgCycle1 32s ease-in-out infinite; }
         .ellipse2 { animation: bgCycle2 32s ease-in-out infinite; }
         .ellipse3 { animation: bgCycle3 32s ease-in-out infinite; }
 
-        /* NAVBAR - MOBILE FRIENDLY */
+        /* NAVBAR */
         .navbar {
             width: 90%;
             max-width: 1380px;
@@ -139,9 +159,10 @@
             text-align: center;
         }
 
-        /* HOME */
+        /* HOME SECTION */
         #home {
             padding-top: 100px;
+            background: linear-gradient(135deg, #0051FF 0%, #0C1032 100%);
         }
 
         .hero {
@@ -182,7 +203,7 @@
             border-radius: 30px;
         }
 
-        /* ABOUT */
+        /* ABOUT SECTION */
         #about {
             padding-top: 100px;
             padding-bottom: 60px;
@@ -238,7 +259,7 @@
             border-radius: 16px;
         }
 
-        /* FEATURES */
+        /* FEATURES SECTION */
         #features {
             padding-top: 100px;
             padding-bottom: 60px;
@@ -291,7 +312,7 @@
             border-radius: 16px;
         }
 
-        /* CONTACT */
+        /* CONTACT SECTION */
         #contact {
             padding-top: 100px;
             padding-bottom: 60px;
@@ -381,8 +402,10 @@
             color: rgba(255,255,255,0.7);
         }
 
-        /* TABLET & DESKTOP ENHANCEMENTS */
-        @media (min-width: 769px) {
+        /* RESPONSIVE LAYOUTS */
+
+        /* TABLET & LAPTOP */
+        @media (min-width: 768px) {
             .navbar {
                 width: 90%;
                 max-width: 1380px;
@@ -395,7 +418,7 @@
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
-                gap: 40px;
+                gap: 60px;
             }
 
             .hero-text {
@@ -432,10 +455,87 @@
             }
         }
 
+        /* DESKTOP / LAPTOP */
         @media (min-width: 1024px) {
             .hero-text h1 { font-size: 60px; }
             .hero-text p { font-size: 22px; }
             .phone { width: 280px; }
+
+            .navbar {
+                padding: 0 60px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-btn {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+
+            .hero {
+                gap: 80px;
+            }
+
+            .hero-text {
+                width: 40%;
+            }
+
+            .hero-img {
+                width: 55%;
+            }
+
+            .about-content, .features-content {
+                width: 50%;
+            }
+
+            .about-illustration, .features-illustration {
+                width: 45%;
+            }
+
+            .contact-container {
+                max-width: 600px;
+            }
+
+            .contact-form {
+                width: 100%;
+            }
+
+            .form-input {
+                min-width: 250px;
+            }
+        }
+
+        /* EXTRA LARGE SCREENS (WIDE LAPTOPS / MONITORS) */
+        @media (min-width: 1440px) {
+            .hero-text h1 { font-size: 72px; }
+            .hero-text p { font-size: 24px; }
+            .phone { width: 300px; }
+
+            .hero {
+                gap: 100px;
+            }
+
+            .hero-text {
+                width: 35%;
+            }
+
+            .hero-img {
+                width: 60%;
+            }
+
+            .about-content, .features-content {
+                width: 45%;
+            }
+
+            .about-illustration, .features-illustration {
+                width: 50%;
+            }
+
+            .contact-container {
+                max-width: 700px;
+            }
         }
     </style>
 </head>
